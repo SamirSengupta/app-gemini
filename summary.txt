@@ -1,0 +1,27 @@
+**Summary of Samir Sengupta's Resume**
+
+Samir Sengupta is an accomplished Data Scientist with expertise in machine learning, predictive analytics, and customer segmentation. He has a strong background in Python, SQL, Tableau, Power BI, and various other data science tools.
+
+**Key Achievements:**
+
+* Spearheaded the migration of an entire code base from PHP to Python, resulting in a 160% increase in system speed.
+* Developed machine learning models for precise customer churn prediction, leading to a significant increase in customer retention rates.
+* Applied deep learning algorithms to enhance the precision of predictive analytics solutions, achieving a 42% improvement in prediction accuracy.
+* Led K-means clustering initiatives for customer segmentation, optimizing targeted marketing strategies.
+
+**Skills:**
+
+* Technical Skills: Python (NumPy, Pandas, Scikit-learn, TensorFlow, Keras), SQL (MySQL, PostgreSQL), Tableau, Power BI, R programming, Machine Learning, Deep Learning, Data Processing, Artificial Intelligence.
+* Soft Skills: Collaborative teamwork, communication, problem-solving, attention to detail, time management, adaptability, continuous learning, critical thinking, leadership, analytical thinking.
+
+**Certifications:**
+
+* Google Certified Data Analyst
+* Blockchain Technology
+* Power BI
+* MySQL
+* Machine Learning
+* Recommender System
+* Adobe Photoshop
+* Advanced Excel
+* Python
