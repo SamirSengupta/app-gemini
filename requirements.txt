@@ -1,4 +1,4 @@
-PyMuPDF
+fitz==0.0.1.dev2  # Assuming the fix resolved the issue
 Flask==2.3.2
-protobuf==3.20.0
-google-generativeai
+protobuf==5.26.0  # Keep current version
+google-ai-generativelanguage==0.1.0  # Downgraded version
