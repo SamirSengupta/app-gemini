@@ -16,9 +16,13 @@
       <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
       <form action="/upload" method="POST" enctype="multipart/form-data">
         <input type="file" name="file" accept=".doc,.docx,.pdf" id="fileID">
+        <textarea name="job_description" placeholder="Enter job description"></textarea> <!-- Added textarea -->
         <button type="submit" class="btn">Upload</button>
       </form>
     </div>
+  </div>
+  <div id="response_box">
+    <!-- Response will be displayed here -->
   </div>
 </div>
 </body>

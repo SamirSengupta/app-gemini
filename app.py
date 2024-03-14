@@ -2,23 +2,22 @@ from flask import Flask, render_template, request, redirect, url_for
 import os
 import fitz  # PyMuPDF
 import google.generativeai as genai
+from io import BytesIO
 
 app = Flask(__name__)
 
-UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'pdf'}
-
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-def extract_text_from_pdf(file_path):
+def extract_text_from_pdf(file):
     text = ''
-    with fitz.open(file_path) as doc:
-        for page in doc:
-            text += page.get_text()
+    doc = fitz.open(None, file)
+    for page in doc:
+        text += page.get_text()
+    doc.close()
     return text
 
 @app.route('/')
@@ -30,22 +29,40 @@ def upload_file():
     if 'file' not in request.files:
         return redirect(request.url)
     file = request.files['file']
-    if file.filename == '':
+    job_description = request.form.get('job_description')  # Retrieve job description from form
+    if file.filename == '' or job_description == '':
         return redirect(request.url)
     if file and allowed_file(file.filename):
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-        file.save(file_path)
-        if file_path.endswith('.pdf'):
-            text = extract_text_from_pdf(file_path)
-            genai.configure(api_key='AIzaSyArLPSqQsvFK3_sXbLHMxx6U3hfomsZ8J4')  # Replace 'YOUR_API_KEY' with your actual API key
+        file.seek(0)  # Move the file cursor to the beginning
+        if file.filename.endswith('.pdf'):
+            text = extract_text_from_pdf(BytesIO(file.read()))
+            genai.configure(api_key='AIzaSyArLPSqQsvFK3_sXbLHMxx6U3hfomsZ8J4')  
             model = genai.GenerativeModel('gemini-pro')
-            response = model.generate_content([text, "Summary of this document, please"])
-            summary_text = response.candidates[0].content.parts[0].text
-            print("---------- Summary ----------")
-            print(summary_text)  # Print generated summary text
-            with open('summary.txt', 'w') as f:
-                f.write(summary_text)
-            return 'Summary written to summary.txt'  # Optional success message
+            
+            # Generate summary from resume
+            response_resume = model.generate_content([
+                text,
+                "Summary of the document.\n"
+                "Skills: What skills this person has.\n"
+                "Total years of experience: Number of years of experience.\n"
+                "Number of companies worked for: Number of companies.\n"
+                "Names of the companies: List of company names.\n"
+                "Designations in those companies: List of designations.\n"
+                "Projects worked on: List of projects.\n"
+                "Programming languages known: List of programming languages.\n"
+                "Extras: Any additional information."
+            ])
+            summary_resume = response_resume.candidates[0].content.parts[0].text
+            
+            # Analyze the similarity between job description and summary using the generative model
+            response_similarity = model.generate_content([
+                job_description,
+                summary_resume,
+                "Should we hire this person for the role and what is the percentage of similarity his resume have with the job description?"
+            ])
+            fit_percentage = response_similarity.candidates[0].content.parts[0].text
+            
+            return render_template('response.html', fit_percentage=fit_percentage)
         else:
             return 'File uploaded successfully (not a PDF)'
     else:
