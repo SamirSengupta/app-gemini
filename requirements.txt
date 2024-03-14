@@ -1,4 +1,4 @@
 PyMuPDF
 Flask==2.3.2
-protobuf==5.26.0
+protobuf==3.20.0
 google-generativeai
