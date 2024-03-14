@@ -2,15 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Response</title>
+  <title>app-gemini-response</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 <div class="container">
   <div class="card">
-    <h3>Response</h3>
+    <h3>The Evaulation Based On The CV and The Job Description</h3>
     <div class="response-box">
-      <p>Fit percentage: {{ fit_percentage }}%</p>
+      <p>Fit percentage: 
+        {% for line in fit_percentage.split('\n') %}
+          {% if line.strip().startswith("*") %}
+            <br>
+          {% endif %}
+          {% if "*" in line %}
+            {{ line | replace("**", "") }}
+          {% else %}
+            {{ line }}
+          {% endif %}
+          <br> <!-- Add a line break after each line -->
+        {% endfor %}
+      </p>
     </div>
   </div>
 </div>

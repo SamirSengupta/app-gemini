@@ -58,9 +58,10 @@ def upload_file():
             response_similarity = model.generate_content([
                 job_description,
                 summary_resume,
-                "Should we hire this person for the role and what is the percentage of similarity his resume have with the job description?"
+                "Should we hire this person for the role and what is the percentage of similarity his resume have with the job description and if we should hire him then why and if we should not then why?, provide the text in plain normal format"
             ])
             fit_percentage = response_similarity.candidates[0].content.parts[0].text
+            print(fit_percentage)
             
             return render_template('response.html', fit_percentage=fit_percentage)
         else:

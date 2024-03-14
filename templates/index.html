@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>File Upload using HTML CSS & JS</title>
+  <title>app-gemini</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 <div class="container">
   <div class="card">
-    <h3>Upload Files</h3>
+    <h3>Upload CV and Job Description</h3>
     <div class="drop_box">
       <header>
         <h4>Select File here</h4>
@@ -16,7 +16,8 @@
       <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
       <form action="/upload" method="POST" enctype="multipart/form-data">
         <input type="file" name="file" accept=".doc,.docx,.pdf" id="fileID">
-        <textarea name="job_description" placeholder="Enter job description"></textarea> <!-- Added textarea -->
+        <textarea name="job_description" placeholder="Enter job description" class="job-description"></textarea>
+
         <button type="submit" class="btn">Upload</button>
       </form>
     </div>
