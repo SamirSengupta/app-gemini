@@ -36,7 +36,7 @@ def upload_file():
         file.seek(0)  # Move the file cursor to the beginning
         if file.filename.endswith('.pdf'):
             text = extract_text_from_pdf(BytesIO(file.read()))
-            genai.configure(api_key='AIzaSyArLPSqQsvFK3_sXbLHMxx6U3hfomsZ8J4')  
+            genai.configure(api_key='Your API HERE')  
             model = genai.GenerativeModel('gemini-pro')
             
             # Generate summary from resume
