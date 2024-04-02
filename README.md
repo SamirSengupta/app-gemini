@@ -17,7 +17,7 @@ app-gemini-pro is an AI-powered application designed to streamline the recruitme
 1. Clone the repository:
 
 ```
-git clone <repository-url>
+git clone [<repository-url>](https://github.com/SamirSengupta/app-gemini-pro/tree/main)
 cd app-gemini-pro
 ```
 
