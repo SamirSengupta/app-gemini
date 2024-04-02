@@ -1,8 +1,8 @@
+---
 
+# app-gemini-pro
 
-# TalentSync
-
-TalentSync is an AI-powered application designed to streamline the recruitment process by analyzing resumes and job descriptions to ensure optimal talent matching.
+app-gemini-pro is an AI-powered application designed to streamline the recruitment process by analyzing resumes and job descriptions to ensure optimal talent matching.
 
 ## Features
 
@@ -18,7 +18,7 @@ TalentSync is an AI-powered application designed to streamline the recruitment p
 
 ```
 git clone <repository-url>
-cd TalentSync
+cd app-gemini-pro
 ```
 
 2. Install dependencies:
@@ -29,7 +29,6 @@ pip install -r requirements.txt
 
 3. Configure API Key:
 
-   - Sign up for an API key from [GenerativeAI](https://generativeai.com/).
    - Replace `'Your API HERE'` with your actual API key in the `app.py` file.
 
 4. Run the application:
@@ -48,7 +47,7 @@ python app.py
 
 ## Contributing
 
-Contributions are welcome! If you'd like to contribute to TalentSync, please follow these steps:
+Contributions are welcome! If you'd like to contribute to app-gemini-pro, please follow these steps:
 
 1. Fork the repository.
 2. Create your feature branch (`git checkout -b feature/your-feature-name`).
